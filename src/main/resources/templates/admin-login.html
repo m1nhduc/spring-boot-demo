@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <title>Admin login</title>
+        <script th:src="@{/resources/jquery/jquery.min.js}"></script>
+        <link th:href="@{/resources/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+        <script th:src="@{/resources/bootstrap/js/bootstrap.js}"></script>
+    </head>
+    <body style="background-color: darkgrey;">
+        <div class="container">
+            <h1 class="text-center">Admin login</h1>
+            <form th:action="@{/admin-login}" method="POST">
+                <div class="mb-3">
+                    <label for="email-login" class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control" id="email-login">
+                </div>
+                <div class="mb-3">
+                    <label for="password-login" class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control" id="password-login">
+                </div>
+                <div id="errors" class="alert alert-danger" role="alert" th:if="${(param.error != null) and (param.error[0] == 'true')}">
+                    Invalid email or password
+                </div>
+                <div class="mb-3">
+                    <input type="submit" value="Login" class="btn btn-danger">
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
