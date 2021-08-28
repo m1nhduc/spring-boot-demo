@@ -1,14 +1,10 @@
 package dmd.test;
 
-import java.util.Collection;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import dmd.test.model.Role;
-import dmd.test.model.User;
 import dmd.test.repository.RoleRepository;
 import dmd.test.repository.UserRepository;
 

@@ -11,6 +11,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
+import dmd.test.model.UserRoles;
+
 @Component
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
@@ -18,11 +20,11 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     public void onAuthenticationSuccess(HttpServletRequest req, HttpServletResponse res, Authentication auth)
             throws IOException, ServletException {
         res.setStatus(HttpServletResponse.SC_OK);
-        for(GrantedAuthority a : auth.getAuthorities()) {
-            if ("ADMIN".equals(a.getAuthority())) {
-                res.sendRedirect("/admin-dashboard");
+        for (GrantedAuthority a : auth.getAuthorities()) {
+            if (UserRoles.ADMIN.toString().equals(a.getAuthority())) {
+                res.sendRedirect("/admin/dashboard");
             }
         }
     }
-    
+
 }

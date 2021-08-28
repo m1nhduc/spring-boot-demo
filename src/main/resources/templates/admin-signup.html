@@ -8,7 +8,7 @@
     <body style="background-color: darkgrey;">
         <div class="container">
             <h1 class="text-center">Admin signup</h1>
-            <form th:action="@{/admin-signup}" method="POST" th:object="${adminSignupFormData}">
+            <form th:action="@{/admin/signup}" method="POST" th:object="${adminSignupFormData}">
                 <div class="mb-3">
                     <label for="email-signup" class="form-label">Email</label>
                     <input type="text" th:field="*{email}" class="form-control" id="email-signup">

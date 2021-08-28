@@ -10,6 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import dmd.test.model.UserRoles;
+
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -33,26 +35,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
             .antMatchers("/").permitAll()
-            .antMatchers("/admin-login").permitAll()
-            .antMatchers("/admin-signup").permitAll()
-            .antMatchers("/admin-dashboard/**").hasAuthority("ADMIN")
+            .antMatchers("/admin/login").permitAll()
+            .antMatchers("/admin/signup").permitAll()
+            .antMatchers("/admin/dashboard/**").hasAuthority(UserRoles.ADMIN.toString())
             .anyRequest()
             .authenticated()
         .and()
             .formLogin()
-            .loginPage("/admin-login")
+            .loginPage("/admin/login")
             .permitAll()
-            .failureUrl("/admin-login?error=true")
+            .failureUrl("/admin/login?error=true")
             .usernameParameter("email")
             .passwordParameter("password")
             .successHandler(authenSuccessHandler)
         .and()
             .logout()
             .permitAll()
-            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+            .logoutRequestMatcher(new AntPathRequestMatcher("/admin/logout"))
             .logoutSuccessHandler(new CustomLogoutSuccessHandler())
             .deleteCookies("JSESSIONID")
-            .logoutSuccessUrl("/admin-login")
+            .logoutSuccessUrl("/admin/login")
         .and()
             .exceptionHandling();
     }

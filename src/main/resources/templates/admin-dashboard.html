@@ -1,0 +1,39 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Admin dashboard</title>
+        <script th:src="@{/resources/jquery/jquery.min.js}"></script>
+        <link th:href="@{/resources/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+        <script th:src="@{/resources/bootstrap/js/bootstrap.js}"></script>
+    </head>
+    <body style="background-color: darkgrey;">
+        <div class="container">
+            <h1 class="text-center">Admin dashboard</h1>
+        </div>
+        <hr>
+        <div class="table-responsive">
+            <h1>Admin list</h1>
+            <h1><a th:href="@{/admin/user/create}" class="btn btn-info">Admin: Create</a></h1>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <th:block th:each="user,iterationStatus : ${userLs}">
+                        <tr>
+                            <td th:text=${user.id}></td>
+                            <td th:text=${user.email}></td>
+                            <td>
+                                <a class="btn btn-danger" th:href="@{/admin/user/edit}">edit</a>
+                                <a class="btn btn-danger" th:href="@{/admin/user/remove}">remove</a>
+                            </td>
+                        </tr>
+                    </th:block>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
